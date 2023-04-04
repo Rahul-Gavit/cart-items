@@ -1,58 +1,14 @@
 import React from "react";
 
-class CartItem extends React.Component{
+const CartItem = (props) => {
 
-
-    // testing () {
-    //     const promise = new Promise((resolve, reject) => {
-    //         setTimeout (() => {
-    //             resolve('done');
-    //         }, 5000);
-    //     })
-    //     promise.then(() => {
-    //         this.setState({qty:100});
-
-    //         console.log('state', this.state);
-    //     })
-    // }
-
-    increaseQuantity = () => {
-        // // this.state.qty += 1;
-        // console.log('this.state', this.state);
-
-        // //setState form 1
-        // this.setState({
-        //     qty: this.state.qty +1
-        // });
-
-        //setState form 2 -> if prevState required use this
-        this.setState ((prevState) => {
-            return {
-                qty: prevState.qty + 1
-            }
-        });
-    }
-
-    decreaseQuantity = () => {
-        const {qty} = this.state;
-
-        if(qty == 0){
-            return;
-        }
-        this.setState ((prevState) => {
-            return {
-                    qty: prevState.qty -1
-            }
-        });
-    }
-    render() {
-        const {price, title, qty} = this.props.product;
-        const {product, onIncreaseQuantity, onDecreaseQuantity, onHandleDeleteProduct} = this.props;
+        const {price, title, qty} = props.product;
+        const {product, onIncreaseQuantity, onDecreaseQuantity, onHandleDeleteProduct} = props;
 
         return(
             <div className="cart-item">
                 <div className="left-block">
-                    <img style={styles.image}/>
+                    <img style={styles.image} src={product.img}/>
                 </div>
                 <div className="right-block">
                     <div style={{fontSize: 25}}>{title}</div>
@@ -90,7 +46,6 @@ class CartItem extends React.Component{
 
         );
     }
-}
 
 const styles = {
     image: {
